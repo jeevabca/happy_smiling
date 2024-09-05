@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install --force
+  pre_build:
+    commands:
+      - echo Running pre-build commands...
+      # - npm run lint
+  build:
+    commands:
+      - echo Building the Angular application...
+      # - export NODE_OPTIONS="--max-old-space-size=4096"
+      - npm run build
+  post_build:
+    commands:
+      - echo Build completed successfully!
+
+artifacts:
+  files:
+    - 'build/**/*' # Include everything in the dist/tvs directory
+    - 'appspec.yml' # Include the appspec.yml file from the root
+    - 'scripts/**/*' # Include all files in the scripts directory
